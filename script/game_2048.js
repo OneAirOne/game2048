@@ -104,6 +104,8 @@
 			$("#scene").append("<div class='element' x =" + x + " y=" + y + " </div>");
 
 			var square = $("[class=element][x='" + x + "'][y='" + y + "']");
+			// square.hide({ effect: "bounce", origin: "center", speed: 1000000});
+			square.removeAttr( "style" ).hide().fadeIn(200)
 
 			// assignation of the value of the grid
 			square.css({top: parseFloat(posY), left: parseFloat(posX)});
