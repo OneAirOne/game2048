@@ -99,6 +99,7 @@
 			var posY = element.attr("posY");
 			var x = element.attr("x");
 			var y = element.attr("y");
+			var grid = $("[x='" + x + "'][y='" + y + "']");
 
 			$("#scene").append("<div class='element' x =" + x + " y=" + y + " </div>");
 
@@ -106,26 +107,12 @@
 
 			// assignation of the value of the grid
 			square.css({top: parseFloat(posY), left: parseFloat(posX)});
-
 			square.attr("color", randomNbr.toString())
 			square.html(randomNbr);
 
+			// update the grid
+			grid.attr("empty", false);
 
-
-
-
-
-			// $(tileToDrawSelect[parseInt(randomIndex)]).attr("empty", false).addClass("color").attr("color",randomNbr.toString()).html(randomNbr).hide();
-			// $(tileToDrawSelect[parseInt(randomIndex)]).attr("empty", false).addClass("color").attr("color",randomNbr.toString()).html(randomNbr).show({ effect: "bounce", origin: "center", speed: 50});
-
-
-
-
-
-
-			// $(tileSelect[parseInt(randomIndex)]).attr("empty", false).attr("content", randomNbr).addClass("color").attr("color",randomNbr.toString()).html(randomNbr).hide();
-			// $(tileSelect[parseInt(randomIndex)]).attr("empty", false).attr("content", randomNbr).addClass("color").attr("color",randomNbr.toString()).html(randomNbr).show({ effect: "bounce", origin: "center", speed: 50});
-			// $("#_1").html(4).attr("color", 4)
 			console.log("POP")
 			console.log($(emptyElement[parseInt(randomIndex)]).attr("x"))
 			console.log($(emptyElement[parseInt(randomIndex)]).attr("y"))
@@ -174,41 +161,84 @@
 								if (cursor.attr("empty") == "false") {
 
 									// -------- deplacement du cursor vers active -> move
-
+									console.log("animate de la div");
+									var square = $("[class=element][x='" + next + "'][y='" + y + "']");
+									var posX = active.attr("posX");
+									square.animate({left: parseFloat(posX) + "px"},300);
+									// update of the div to move
+									square.attr("x", x);
+									// update of the grid
+									active.attr("empty", false);
+									cursor.attr("empty", true);
 									// -----------------------------------------------
+
 									x++;
 									move = 1;
 									break;
 
 								}
+
 								next--;
 							}
 						} else {
 							console.log("case non vide")
 							// si la case active n'est pas vide
 							var next = x - 1;
+							var squareActive = $("[class=element][x='" + x + "'][y='" + y + "']");
+							var squareActiveVal = parseInt(squareActive.html());
 							// recherche d'une valeur
 							while (next >= 0) {
 								var cursor = $("[x='" + next + "'][y='" + y + "']");
+								var square = $("[class=element][x='" + next + "'][y='" + y + "']");
+
+								var squareVal = parseInt(square.html());
+
+
 								// si la valeur trouvee par le curseur correspond a la valeur active -> merge
-								if (parseInt(cursor.attr("content")) == parseInt(active.attr("content"))) {
-									var sum = parseInt(cursor.attr("content")) + parseInt(active.attr("content"));
+								if (squareActiveVal == squareVal) {
+									console.log("x: " + x);
+									console.log("next: " + next);
+									console.log("y: " + y);
+									console.log("squareVal: " + squareVal);
+									console.log("squareActiveVal: " + squareActiveVal);
+									var sum = squareVal + squareActiveVal;
 
 									// -------- deplacement du cursor vers active -> move
+									var posX = active.attr("posX");
+									console.log("SUP");
+									// squareActive.remove();
+
+									square.animate({left: parseFloat(posX) + "px"}, 150);
+
+									console.log("sum: " + sum);
+									square.html(sum);
+									square.attr("color", sum);
+									squareActive.remove();
+
+									// update of the div to move
+									square.attr("x", x);
+									// update of the grid
+									cursor.attr("empty", true);
+									active.attr("empty", false);
+									// remove de la squareActive
 
 									// -----------------------------------------------
 
 									score = score + sum;
 									move = 1;
+
 									break;
 
 								// si la valeur trouvee par le curseur ne correspond pas a la valeur active
-								} else if (parseInt(cursor.attr("content")) != parseInt(active.attr("content")) && cursor.attr("empty") == "false") {
+								} else if (squareVal != squareActiveVal && cursor.attr("empty") == "false") {
+
 									break;
 								}
 								next--;
 							}
+
 						}
+
 						x--;
 					}
 						x = 3;
