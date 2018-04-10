@@ -208,12 +208,13 @@
 									console.log("SUP");
 									// squareActive.remove();
 
-									square.animate({left: parseFloat(posX) + "px"}, 150);
+									square.animate({left: parseFloat(posX) + "px"}, 200);
 
+									squareActive.remove();
 									console.log("sum: " + sum);
 									square.html(sum);
 									square.attr("color", sum);
-									squareActive.remove();
+
 
 									// update of the div to move
 									square.attr("x", x);
@@ -251,6 +252,341 @@
 			}
 		}
 
+		function move_left(sizeGrid)
+		{
+
+				var move = 0;
+				var max = (sizeGrid - 1) // 3
+				var y = 0;
+				var x = 0;
+
+				while (y <= max ) {
+					while (x <= max) {
+
+						var active = $("[x='" + x + "'][y='" + y + "']");
+						// si la case active est vide
+						if (active.attr("empty") == "true") {
+							var next = x + 1;
+							// recherche d'une valeur
+							while (next <= 3) {
+								var cursor = $("[x='" + next + "'][y='" + y + "']");
+								if (cursor.attr("empty") == "false") {
+
+									// -------- deplacement du cursor vers active -> move
+									console.log("animate de la div");
+									var square = $("[class=element][x='" + next + "'][y='" + y + "']");
+									var posX = active.attr("posX");
+									square.animate({left: parseFloat(posX) + "px"},300);
+									// update of the div to move
+									square.attr("x", x);
+									// update of the grid
+									active.attr("empty", false);
+									cursor.attr("empty", true);
+									// -----------------------------------------------
+
+									x--;
+									move = 1;
+									break;
+
+								}
+
+								next++;
+							}
+						} else {
+							console.log("case non vide")
+							// si la case active n'est pas vide
+							var next = x + 1;
+							var squareActive = $("[class=element][x='" + x + "'][y='" + y + "']");
+							var squareActiveVal = parseInt(squareActive.html());
+							// recherche d'une valeur
+							while (next <= max) {
+								var cursor = $("[x='" + next + "'][y='" + y + "']");
+								var square = $("[class=element][x='" + next + "'][y='" + y + "']");
+
+								var squareVal = parseInt(square.html());
+
+
+								// si la valeur trouvee par le curseur correspond a la valeur active -> merge
+								if (squareActiveVal == squareVal) {
+									console.log("x: " + x);
+									console.log("next: " + next);
+									console.log("y: " + y);
+									console.log("squareVal: " + squareVal);
+									console.log("squareActiveVal: " + squareActiveVal);
+									var sum = squareVal + squareActiveVal;
+
+									// -------- deplacement du cursor vers active -> move
+									var posX = active.attr("posX");
+									console.log("SUP");
+									// squareActive.remove();
+
+									square.animate({left: parseFloat(posX) + "px"}, 200);
+
+									squareActive.remove();
+									console.log("sum: " + sum);
+									square.html(sum);
+									square.attr("color", sum);
+
+
+									// update of the div to move
+									square.attr("x", x);
+									// update of the grid
+									cursor.attr("empty", true);
+									active.attr("empty", false);
+									// remove de la squareActive
+
+									// -----------------------------------------------
+
+									score = score + sum;
+									move = 1;
+
+									break;
+
+								// si la valeur trouvee par le curseur ne correspond pas a la valeur active
+								} else if (squareVal != squareActiveVal && cursor.attr("empty") == "false") {
+
+									break;
+								}
+								next++;
+							}
+
+						}
+
+						x++;
+					}
+						x = 0;
+						y++;
+				}
+			if(move > 0) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
+
+		function move_up(sizeGrid)
+		{
+
+				var move = 0;
+				var max = (sizeGrid - 1) // 3
+				var y = 0;
+				var x = 0;
+
+				while (y <= max ) {
+					while (x <= max) {
+
+						var active = $("[x='" + x + "'][y='" + y + "']");
+						// si la case active est vide
+						if (active.attr("empty") == "true") {
+							var next = y + 1;
+							// recherche d'une valeur
+							while (next <= 3) {
+								var cursor = $("[x='" + x + "'][y='" + next + "']");
+								if (cursor.attr("empty") == "false") {
+
+									// -------- deplacement du cursor vers active -> move
+									console.log("animate de la div");
+									var square = $("[class=element][x='" + x + "'][y='" + next + "']");
+									var posY = active.attr("posY");
+									square.animate({top: parseFloat(posY) + "px"},300);
+									// update of the div to move
+									square.attr("y", y);
+									// update of the grid
+									active.attr("empty", false);
+									cursor.attr("empty", true);
+									// -----------------------------------------------
+
+									y--;
+									move = 1;
+									break;
+
+								}
+
+								next++;
+							}
+						} else {
+							console.log("case non vide")
+							// si la case active n'est pas vide
+							var next = y + 1;
+							var squareActive = $("[class=element][x='" + x + "'][y='" + y + "']");
+							var squareActiveVal = parseInt(squareActive.html());
+							// recherche d'une valeur
+							while (next <= max) {
+								var cursor = $("[x='" + x + "'][y='" + next + "']");
+								var square = $("[class=element][x='" + x + "'][y='" + next + "']");
+
+								var squareVal = parseInt(square.html());
+
+
+								// si la valeur trouvee par le curseur correspond a la valeur active -> merge
+								if (squareActiveVal == squareVal) {
+									console.log("x: " + x);
+									console.log("next: " + next);
+									console.log("y: " + y);
+									console.log("squareVal: " + squareVal);
+									console.log("squareActiveVal: " + squareActiveVal);
+									var sum = squareVal + squareActiveVal;
+
+									// -------- deplacement du cursor vers active -> move
+									var posY = active.attr("posY");
+									console.log("SUP");
+									// squareActive.remove();
+
+									square.animate({top: parseFloat(posY) + "px"}, 200);
+
+									squareActive.remove();
+									console.log("sum: " + sum);
+									square.html(sum);
+									square.attr("color", sum);
+
+
+									// update of the div to move
+									square.attr("y", y);
+									// update of the grid
+									cursor.attr("empty", true);
+									active.attr("empty", false);
+									// remove de la squareActive
+
+									// -----------------------------------------------
+
+									score = score + sum;
+									move = 1;
+
+									break;
+
+								// si la valeur trouvee par le curseur ne correspond pas a la valeur active
+								} else if (squareVal != squareActiveVal && cursor.attr("empty") == "false") {
+
+									break;
+								}
+								next++;
+							}
+
+						}
+
+						x++;
+					}
+						x = 0;
+						y++;
+				}
+			if(move > 0) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
+
+		function move_down(sizeGrid)
+		{
+
+				var move = 0;
+				var max = (sizeGrid - 1) // 3
+				var y = max;
+				var x = max;
+
+				while (y >= 0 ) {
+					while (x >= 0) {
+
+						var active = $("[x='" + x + "'][y='" + y + "']");
+						// si la case active est vide
+						if (active.attr("empty") == "true") {
+							var next = y - 1;
+							// recherche d'une valeur
+							while (next >= 0) {
+								var cursor = $("[x='" + x + "'][y='" + next + "']");
+								if (cursor.attr("empty") == "false") {
+
+									// -------- deplacement du cursor vers active -> move
+									console.log("animate de la div");
+									var square = $("[class=element][x='" + x + "'][y='" + next + "']");
+									var posY = active.attr("posY");
+									square.animate({top: parseFloat(posY) + "px"},300);
+									// update of the div to move
+									square.attr("y", y);
+									// update of the grid
+									active.attr("empty", false);
+									cursor.attr("empty", true);
+									// -----------------------------------------------
+
+									y++;
+									move = 1;
+									break;
+
+								}
+
+								next--;
+							}
+						} else {
+							console.log("case non vide")
+							// si la case active n'est pas vide
+							var next = y - 1;
+							var squareActive = $("[class=element][x='" + x + "'][y='" + y + "']");
+							var squareActiveVal = parseInt(squareActive.html());
+							// recherche d'une valeur
+							while (next >= 0) {
+								var cursor = $("[x='" + x + "'][y='" + next + "']");
+								var square = $("[class=element][x='" + x + "'][y='" + next + "']");
+
+								var squareVal = parseInt(square.html());
+
+
+								// si la valeur trouvee par le curseur correspond a la valeur active -> merge
+								if (squareActiveVal == squareVal) {
+									console.log("x: " + x);
+									console.log("next: " + next);
+									console.log("y: " + y);
+									console.log("squareVal: " + squareVal);
+									console.log("squareActiveVal: " + squareActiveVal);
+									var sum = squareVal + squareActiveVal;
+
+									// -------- deplacement du cursor vers active -> move
+									var posY = active.attr("posY");
+									console.log("SUP");
+									// squareActive.remove();
+
+									square.animate({top: parseFloat(posY) + "px"}, 200);
+
+									squareActive.remove();
+									console.log("sum: " + sum);
+									square.html(sum);
+									square.attr("color", sum);
+
+
+									// update of the div to move
+									square.attr("y", y);
+									// update of the grid
+									cursor.attr("empty", true);
+									active.attr("empty", false);
+									// remove de la squareActive
+
+									// -----------------------------------------------
+
+									score = score + sum;
+									move = 1;
+
+									break;
+
+								// si la valeur trouvee par le curseur ne correspond pas a la valeur active
+								} else if (squareVal != squareActiveVal && cursor.attr("empty") == "false") {
+
+									break;
+								}
+								next--;
+							}
+
+						}
+
+						x--;
+					}
+						x = max;
+						y--;
+				}
+			if(move > 0) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
 
 
 		function checkWin(sizeGrid)
@@ -409,7 +745,7 @@
 						$(".score").html("score: " + score);
 						// pop of a new tile if minimum 1 move
 						if (moveReturn == 1) {
-							generateTile(generateNumber());
+							setTimeout(generateTile(generateNumber()),200);
 
 						}
 						if (checkWin(paramGrid) == 1) {
@@ -427,7 +763,7 @@
 						$(".score").html("score: " + score);
 						// pop of a new tile if minimum 1 move
 						if (moveReturn == 1) {
-							generateTile(generateNumber());
+							setTimeout(generateTile(generateNumber()),200);
 
 						}
 						if (checkWin(paramGrid) == 1) {
