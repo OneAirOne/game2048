@@ -1,0 +1,133 @@
+body {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 1em;
+}
+
+select, button {
+	height:22px;
+	width: 100px;
+	margin-left: 10px;
+	font-family: "Courier New", Courier, monospace;
+}
+
+h1 {
+	/* margin-top: 50px; */
+	text-align: center;
+	font-family: "Courier New", Courier, monospace;
+}
+
+input {
+	height:25px;
+	width: 40px;
+}
+
+label {
+	margin-right: 5px;
+}
+
+/* table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+		margin: 0 auto;
+} */
+
+/* td {
+		width:  80px;
+		height: 80px;
+
+} */
+
+/* table {
+	margin-top: 50px;
+} */
+
+#scene {
+	border: 1px solid black;
+	padding-top: 5px;
+	padding-left: 5px;
+	height: 400px;
+	width: 400px;
+	margin-top: 50px;
+	margin-right: auto;
+	margin-left: auto;
+	/* border-collapse: collapse; */
+
+}
+.grid {
+	position: relative;
+	display: inline-block;
+	height: 95px;
+	width: 95px;
+	border: 1px solid rgba(15, 116, 133, .5);
+	border-radius: 5%;
+	box-sizing: border-box;
+	margin-right: 5px;
+	/* margin-bottom: 5px; */
+}
+.element {
+	position: absolute;
+	vertical-align: middle;
+	text-align: center;
+	line-height: 90px;
+	/* display: inline-block; */
+
+	margin-right: 5px;
+	margin-bottom: 5px;
+	height: 95px;
+	width: 95px;
+	border-radius: 5%;
+	box-sizing: border-box;
+
+}
+
+.score {
+	text-align: right;
+	margin-right: 20px;
+	font-size: 2em;
+}
+
+
+div[color="2"] {
+
+	background: #28E642;
+	font-size: 1.2em;
+}
+
+div[color="4"] {
+	background: #A3B9BF;
+	font-size: 1.2em;
+}
+
+div[color="8"] {
+	background: #FEDA32;
+	font-size: 1.2em;
+}
+
+div[color="16"] {
+	background: #F8591F;
+	font-size: 1.2em;
+}
+
+
+/* .color_2 {
+	background: #C9DFEE;
+	position: relative;
+	height: 85%;
+	margin: 0px 5px 0px 5px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 1.2em;
+	line-height:60px;
+
+}
+
+.color_4{
+	background: #859DB4;
+
+	height: 85%;
+	margin: 0px 5px 0px 5px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 1.2em;
+	line-height:60px;
+} */

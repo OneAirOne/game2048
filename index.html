@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="style/style.css">
+		<title></title>
+	</head>
+	<body>
+		<h1>Game 2048</h1>
+		<div class="gameScreen">
+
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="script/game_2048.js"></script>
+		<script type="text/javascript">
+			$(function() {
+	       $(document).ready(function() {
+					 $(".gameScreen").game2048()
+				 })
+	     });
+		</script>
+	</body>
+</html>
